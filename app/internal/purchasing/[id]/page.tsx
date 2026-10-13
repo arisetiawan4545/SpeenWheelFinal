@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { db } from "../../../../lib/firebase";
 import { doc, collection, query, where, addDoc, deleteDoc, updateDoc, onSnapshot } from "firebase/firestore";
@@ -33,7 +33,7 @@ interface Slot {
   color?: string;
 }
 
-export default function PurchasingDetail() {
+function PurchasingDetailContent() {
   const params = useParams();
   const router = useRouter();
   const campaignId = params.id as string;
@@ -552,5 +552,13 @@ const handleAddSlot = async (e: React.FormEvent) => {
         </div>
       )}
     </main>
+  );
+}
+// 4. PEMBUNGKUS SUSPENSE (Taro di sini, paling bawah)
+export default function PurchasingDetail() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0f172a] text-white p-8 flex items-center justify-center">Memuat Halaman Detail...</div>}>
+      <PurchasingDetailContent />
+    </Suspense>
   );
 }
