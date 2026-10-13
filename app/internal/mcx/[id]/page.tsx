@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { db, storage } from "../../../../lib/firebase";
 import { doc, collection, query, where, updateDoc, onSnapshot } from "firebase/firestore";
@@ -30,7 +30,7 @@ interface Slot {
   color?: string;
 }
 
-export default function MCXDetail() {
+function MCXDetailContent() {
   const params = useParams();
   const router = useRouter();
   const campaignId = params.id as string;
@@ -308,5 +308,12 @@ export default function MCXDetail() {
         </div>
       </div>
     </main>
+  );
+}
+export default function MCXDetail() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0f172a] text-white p-8 flex items-center justify-center">Memuat Halaman...</div>}>
+      <MCXDetailContent />
+    </Suspense>
   );
 }
