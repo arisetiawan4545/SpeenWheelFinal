@@ -32,7 +32,7 @@ interface Slot {
   imageUrl?: string;
   color?: string;
 }
-export const dynamic = 'force-dynamic';
+
 export default function PurchasingDetail() {
   const params = useParams();
   const router = useRouter();
