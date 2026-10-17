@@ -31,11 +31,12 @@ export default function LoginPage() {
         const userData = userDocSnap.data();
         const role = userData.role;
 
-
         if (role === "purchasing") {
           router.push("/internal/purchasing");
         } else if (role === "mcx") {
           router.push("/internal/mcx");
+        } else if (role === "kasir") {       
+          router.push("/kasir");            
         } else {
           setError("Akses ditolak: Divisi tidak dikenali.");
           auth.signOut();

@@ -1,7 +1,6 @@
-
 import React from "react";
 import Link from "next/link";
-import { Gamepad2 } from "lucide-react";
+import Image from "next/image"; // Import komponen Image dari Next.js
 
 export default function InternalLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,8 +9,16 @@ export default function InternalLayout({ children }: { children: React.ReactNode
       <nav className="w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-indigo-500/20 text-indigo-400 rounded-lg flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white transition-all">
-              <Gamepad2 size={18} />
+            {/* Logo diganti menggunakan gambar logo.png */}
+            <div className="w-8 h-8 flex items-center justify-center transition-transform group-hover:scale-110">
+              <Image 
+                src="/logo.png" 
+                alt="MySehati Logo" 
+                width={32} 
+                height={32} 
+                className="object-contain drop-shadow-md"
+                priority // Tambahkan priority karena ini LCP (Largest Contentful Paint) di header
+              />
             </div>
             <span className="font-bold text-white tracking-wide">
               MySehati <span className="text-indigo-400 font-black">CMS</span>

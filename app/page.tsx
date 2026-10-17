@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ShieldCheck, Gamepad2, Settings } from "lucide-react";
+import { ArrowRight, ShieldCheck, Settings } from "lucide-react";
 import { db } from "../lib/firebase"; // <-- Sesuaikan path ini jika error
 import { collection, query, where, limit, onSnapshot } from "firebase/firestore";
 
@@ -88,10 +88,20 @@ export default function LandingPage() {
 
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
         
-        {/* LOGO */}
-        <div className="w-20 h-20 bg-slate-900 border border-slate-700 shadow-2xl rounded-3xl flex items-center justify-center mb-8 relative">
-          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-30"></div>
-          <Gamepad2 size={40} className="text-white relative z-10" />
+        {/* LOGO AREA (Sudah Menggunakan logo.png) */}
+        <div className="w-24 h-24 bg-slate-900 border border-slate-700 shadow-2xl rounded-3xl flex items-center justify-center mb-8 relative p-2">
+          {/* Efek Glow di belakang Logo */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-30 animate-pulse"></div>
+          
+          <img 
+            src="/logo.png" 
+            alt="MySehati Logo" 
+            className="w-full h-full object-contain relative z-10 drop-shadow-md"
+            onError={(e) => {
+              // Jika logo belum ada, jangan merusak layout
+              e.currentTarget.style.display = 'none';
+            }}
+          />
         </div>
 
         {/* JUDUL */}
