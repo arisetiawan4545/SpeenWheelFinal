@@ -477,6 +477,7 @@ export default function SpinWheelTV({
                     width="100"
                     height="100"
                     patternUnits="userSpaceOnUse"
+                    patternTransform="rotate(90 50 50)"
                   >
                     <image
                       href={slot.imageUrl}
